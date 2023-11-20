@@ -72,55 +72,46 @@ def betterEvaluationFunction(gameState):
 
 class MinimaxAgent(Agent):
 
-    def __init__(self, evalFn='scoreEvaluationFunction', depth=2):
+    def __init__(self, evalFn='scoreEvaluationFunction', depth='2'):
         self.index = 0  # Pacman is always agent index 0
         self.evaluationFunction = betterEvaluationFunction
         self.depth = int(depth)
 
-    def minimax(self, gameState: GameState, depth, agentIndex, alpha, beta):
+    def minimax(self, gameState: GameState, depth, agentIndex):
         if depth == 0 or gameState.isWin() or gameState.isLose():
             return self.evaluationFunction(gameState)
         if agentIndex == 0:
-            return self.maxValue(gameState, depth, alpha, beta)
+            return self.maxValue(gameState, depth)
         else:
-            return self.minValue(gameState, depth, agentIndex, alpha, beta)
+            return self.minValue(gameState, depth, agentIndex)
 
-    def maxValue(self, gameState: GameState, depth, alpha, beta):
+    def maxValue(self, gameState: GameState, depth):
         v = float('-inf')
         actions = gameState.getLegalActions(0)  # Pacman's actions
         for action in actions:
             successor = gameState.generateSuccessor(0, action)
-            v = max(v, self.minimax(successor, depth, 1, alpha, beta))  # Call minimax for the first ghost agent
-            if v >= beta:
-                return v
-            alpha = max(alpha, v)
+            v = max(v, self.minimax(successor, depth, 1))  # Call minimax for the first ghost agent
         return v
 
-    def minValue(self, gameState: GameState, depth, agentIndex, alpha, beta):
+    def minValue(self, gameState: GameState, depth, agentIndex):
         v = float('inf')
         actions = gameState.getLegalActions(agentIndex)
         for action in actions:
             successor = gameState.generateSuccessor(agentIndex, action)
             if agentIndex == gameState.getNumAgents() - 1:
-                v = min(v, self.minimax(successor, depth - 1, 0, alpha, beta))  # Call minimax for the next depth and Pacman
+                v = min(v, self.minimax(successor, depth - 1, 0))  # Call minimax for the next depth and Pacman
             else:
-                v = min(v, self.minimax(successor, depth, agentIndex + 1, alpha, beta))  # Call minimax for the next agent
-            if v <= alpha:
-                return v
-            beta = min(beta, v)
+                v = min(v, self.minimax(successor, depth, agentIndex + 1))  # Call minimax for the next agent
         return v
 
     def getAction(self, gameState: GameState):
         actions = gameState.getLegalActions(0)  # Pacman's actions
         bestAction = None
         bestValue = float('-inf')
-        alpha = float('-inf')
-        beta = float('inf')
         for action in actions:
             successor = gameState.generateSuccessor(0, action)
-            value = self.minimax(successor, self.depth, 1, alpha, beta)  # Call minimax for the first ghost agent
+            value = self.minimax(successor, self.depth, 1)  # Call minimax for the first ghost agent
             if value > bestValue:
                 bestValue = value
                 bestAction = action
-            alpha = max(alpha, bestValue)
         return bestAction
