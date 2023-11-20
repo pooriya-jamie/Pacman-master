@@ -61,7 +61,7 @@ def minDistanceBfs(currentGameState: GameState):
                 queue.push([(x, y - 1), sposition[1] + 1])
             if not walls[x][y + 1] and y < width:
                 queue.push([(x, y + 1), sposition[1] + 1])
-        # print("Exploring position:", sposition[0], "with distance:", sposition[1])  
+        print("Exploring position:", sposition[0], "with distance:", sposition[1])  
     return float('inf')  # If no food found
 
 def betterEvaluationFunction(gameState):
@@ -146,3 +146,5 @@ class MinimaxAgent(Agent):
                 bestAction = action
             alpha = max(alpha, bestValue)
         return bestAction
+
+
