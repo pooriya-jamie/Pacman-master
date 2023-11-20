@@ -2,6 +2,7 @@
 
 ## Intro
 [The Pacman Projects](http://ai.berkeley.edu/project_overview.html) by the [University of California, Berkeley](http://berkeley.edu/).
+
 Special Thanks to Davide Liu for sharing this project (https://github.com/davide97l/Pacman)
 
 ![Animated gif pacman game](http://ai.berkeley.edu/images/pacman_game.gif)
