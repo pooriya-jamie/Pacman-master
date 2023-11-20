@@ -25,9 +25,3 @@ $ python pacman.py -p MinimaxAgent -l minimaxClassic -a depth=4
 ```
 $ python pacman.py -p AlphaBetaAgent -l openClassic -a depth=2
 ```
-
-## Search algorithms
-- DeepSearch: a deep search algorithm to find the best possible path given an evaluation function, it si faster than minimax but doesn't keep into considerations ghosts
-```
-$ python pacman.py -l trickyClassic -p DeepSearchAgent -a depth=6 evalFn=evaluationFunction
-```
