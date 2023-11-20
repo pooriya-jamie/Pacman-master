@@ -7,28 +7,6 @@ import numpy as np
 from searchAgents import scoreEvaluationFunction
 from game import Agent
 
-
-class ReflexAgent(Agent):
-    def getAction(self, gameState):
-        legalMoves = gameState.getLegalActions()
-
-        scores = [betterEvaluationFunction(gameState.generateSuccessor(0, action)) for action in legalMoves]
-        bestScore = max(scores)
-        bestIndices = [index for index in range(len(scores)) if scores[index] == bestScore]
-        chosenIndex = random.choice(bestIndices)
-
-        return legalMoves[chosenIndex]
-
-
-class BetterEvaluationAgent(Agent):
-    def getAction(self, gameState):
-        legalMoves = gameState.getLegalActions()
-        scores = [betterEvaluationFunction(gameState.generateSuccessor(0, action)) for action in legalMoves]
-        bestScore = max(scores)
-        bestIndices = [index for index in range(len(scores)) if scores[index] == bestScore]
-        chosenIndex = random.choice(bestIndices)
-        return legalMoves[chosenIndex]
-
 def minDistanceBfs(currentGameState: GameState):
     walls = currentGameState.getWalls()
     height = 0
