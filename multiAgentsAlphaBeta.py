@@ -52,7 +52,6 @@ def minDistanceBfs(currentGameState: GameState):
         visited.add(sposition[0])
         for i in range(0, 4):
             x, y = sposition[0]
-            # up
             if not walls[x - 1][y] and x > 0:
                 queue.push([(x - 1, y), sposition[1] + 1])
             if not walls[x + 1][y] and x < height:
@@ -61,7 +60,7 @@ def minDistanceBfs(currentGameState: GameState):
                 queue.push([(x, y - 1), sposition[1] + 1])
             if not walls[x][y + 1] and y < width:
                 queue.push([(x, y + 1), sposition[1] + 1])
-        print("Exploring position:", sposition[0], "with distance:", sposition[1])  
+        # print("Exploring position:", sposition[0], "with distance:", sposition[1])  
     return float('inf')  # If no food found
 
 def betterEvaluationFunction(gameState):
