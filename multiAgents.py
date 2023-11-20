@@ -72,7 +72,7 @@ def betterEvaluationFunction(gameState):
 
 class MinimaxAgent(Agent):
 
-    def __init__(self, evalFn='scoreEvaluationFunction', depth='3'):
+    def __init__(self, evalFn='scoreEvaluationFunction', depth=2):
         self.index = 0  # Pacman is always agent index 0
         self.evaluationFunction = betterEvaluationFunction
         self.depth = int(depth)
